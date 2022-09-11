@@ -1,0 +1,30 @@
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond $1 !^(css|js|images|inc|lang)
+ 
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+
+
+# Yeni bir yönlendirme kuralı ekliyoruz
+
+RewriteRule ^anasayfa$ index.php
+RewriteRule ^konular$ topics.php
+RewriteRule ^hakkimizda$ aboutus.php
+RewriteRule ^hesap-yonetimi$ accountmanage.php
+RewriteRule ^admin$ admin.php
+RewriteRule ^shell-script-sifreleme$ shell-encrypt.php
+RewriteRule ^iptables-kural-olustur$ iptables-rule-creator.php
+RewriteRule ^kayit-ol$ register.php
+RewriteRule ^giris-yap$ login.php
+RewriteRule ^cikis$ logout.php
+RewriteRule ^audiobot-olustur$ create-audiobot.php
+RewriteRule ^webhosting-olustur$ webhosting.php
+RewriteRule ^linux-script-listesi$ script-list.php
+RewriteRule ^teamspeak3-proxy-olustur$ teamspeak3-proxy.php
+RewriteRule ^konular/([0-9a-zA-Z-_]+)/([0-9]+)$  topics.php?sef=$1&read=$2 [L,QSA]
+RewriteRule ^kategoriler/([0-9a-zA-Z-_]+)/([0-9]+)$  topics.php?sef=$1&category_id=$2 [L,QSA]
+ErrorDocument 404 /
